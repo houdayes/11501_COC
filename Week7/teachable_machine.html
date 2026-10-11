@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachable Machine 學習指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f0fdfa; /* Light teal background */
+            color: #334155; /* Slate-700 text */
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+        }
+        .step-number {
+            background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+        }
+        /* Custom image styling for better presentation */
+        .instruction-img {
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .instruction-img:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="antialiased pb-20">
+
+    <header class="hero-bg text-white shadow-lg">
+        <div class="max-w-5xl mx-auto px-4 py-16 text-center">
+            <h1 class="text-4xl md:text-5xl font-black mb-4 tracking-wider">跟著AI一起學！<br class="md:hidden">Teachable Machine</h1>
+            <p class="text-lg md:text-xl font-medium opacity-90 max-w-2xl mx-auto">專為六年級同學設計的 AI 機器學習初體驗，讓我們一起教電腦辨識物品！</p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 mt-8 md:mt-12 space-y-12">
+
+        <section id="introduction" class="bg-white rounded-2xl shadow-md p-6 md:p-10 border-t-4 border-blue-500">
+            <h2 class="text-3xl font-bold text-blue-800 mb-6 flex items-center">
+                <span class="bg-blue-100 text-blue-600 rounded-full w-10 h-10 flex items-center justify-center mr-3 text-2xl">1</span>
+                認識 Teachable Machine
+            </h2>
+            <div class="prose prose-lg text-slate-600 max-w-none">
+                <p class="mb-4">
+                    <strong>Teachable Machine</strong> 是一個由 Google 開發的超酷網站！它讓大家可以在網頁上直接建立自己的「機器學習」模型，而且<strong>完全不需要寫程式</strong>喔！
+                </p>
+                <p class="mb-4">
+                    你可以把 Teachable Machine 想像成一個非常聰明但剛出生的寶寶。透過給它看很多的照片、聽很多聲音或是看不同的動作，你可以「教」它認識這個世界。這就像是我們學習分辨蘋果和香蕉一樣。
+                </p>
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg mb-4">
+                    <h3 class="font-bold text-blue-800 mb-2">機器的學習三步驟：</h3>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li><strong>收集資料：</strong> 給電腦看很多照片 (例如：很多可回收物品的照片)。</li>
+                        <li><strong>進行訓練：</strong> 電腦會自己尋找這些照片的共通特徵，努力學習。</li>
+                        <li><strong>預測評估：</strong> 拿一張新照片考考電腦，看它猜得對不對！</li>
+                    </ul>
+                </div>
+                <p>
+                    今天，我們將要使用 Teachable Machine 的「圖片專案 (Image Project)」，來教電腦認識我們的圖卡！
+                </p>
+            </div>
+        </section>
+
+        <section id="tools" class="bg-white rounded-2xl shadow-md p-6 md:p-10 border-t-4 border-emerald-500">
+            <h2 class="text-3xl font-bold text-emerald-800 mb-6 flex items-center">
+                <span class="bg-emerald-100 text-emerald-600 rounded-full w-10 h-10 flex items-center justify-center mr-3 text-2xl">2</span>
+                上課工具準備 (借用與歸還)
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Webcam Rules -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2">📷 網路攝影機 (Webcam)</h3>
+                    <ul class="space-y-3 mb-6 text-slate-600">
+                        <li class="flex items-start">
+                            <span class="text-emerald-500 mr-2">✔️</span>
+                            <span><strong>數量：</strong>每盒 2 支。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-emerald-500 mr-2">✔️</span>
+                            <span><strong>負責同學：</strong>由座號<strong>單數號</strong>的同學負責借用與歸還。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-emerald-500 mr-2">✔️</span>
+                            <span><strong>借用/歸還方式：</strong>請依序擺放整齊，黃色標籤朝外。</span>
+                        </li>
+                    </ul>
+                    <div class="space-y-4">
+                        <div class="bg-white p-2 rounded-lg shadow-sm">
+                            <p class="text-sm font-semibold text-center mb-1 text-slate-500">2台攝影機放1盒，擺放整齊</p>
+                            <img src="webcam-01.png" alt="2台攝影機放1盒示意圖" class="w-full rounded instruction-img" onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=Image+Not+Found'">
+                        </div>
+                        <div class="bg-white p-2 rounded-lg shadow-sm">
+                            <p class="text-sm font-semibold text-center mb-1 text-slate-500">黃色標籤朝外，依照編號放回櫃子</p>
+                            <img src="webcam-02.png" alt="黃色標籤朝外示意圖" class="w-full rounded instruction-img" onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=Image+Not+Found'">
+                        </div>
+                        <div class="bg-white p-2 rounded-lg shadow-sm">
+                            <p class="text-sm font-semibold text-center mb-1 text-slate-500">網路攝影機編號配置圖</p>
+                            <img src="webcam-03.png" alt="網路攝影機編號配置圖" class="w-full rounded instruction-img" onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=Image+Not+Found'">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cards Rules -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2">🖼️ AI 訓練圖卡</h3>
+                    <ul class="space-y-3 mb-6 text-slate-600">
+                        <li class="flex items-start">
+                            <span class="text-emerald-500 mr-2">✔️</span>
+                            <span><strong>數量：</strong>每包 4 張。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-emerald-500 mr-2">✔️</span>
+                            <span><strong>負責同學：</strong>由座號 <strong>2, 6, 10, 14, 18, 22, 26號</strong> 的同學負責借用與歸還。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-emerald-500 mr-2">✔️</span>
+                            <span><strong>歸還方式：</strong>圖卡依序放入透明塑膠夾內，交回教師電腦旁的桌子上。</span>
+                        </li>
+                    </ul>
+                    <div class="bg-white p-2 rounded-lg shadow-sm mt-4">
+                        <p class="text-sm font-semibold text-center mb-1 text-slate-500">AI訓練圖卡編號配置</p>
+                        <img src="card.png" alt="AI訓練圖卡編號配置圖" class="w-full rounded instruction-img" onerror="this.src='https://placehold.co/800x450/eeeeee/999999?text=Image+Not+Found'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="steps" class="bg-white rounded-2xl shadow-md p-6 md:p-10 border-t-4 border-orange-500">
+            <h2 class="text-3xl font-bold text-orange-800 mb-8 flex items-center">
+                <span class="bg-orange-100 text-orange-600 rounded-full w-10 h-10 flex items-center justify-center mr-3 text-2xl">3</span>
+                上課操作順序
+            </h2>
+
+            <div class="space-y-6">
+                
+                <!-- Step 1-4: Preparation -->
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-4">
+                        <div class="step-number text-white font-bold rounded-full w-8 h-8 flex items-center justify-center shadow">1</div>
+                    </div>
+                    <div class="pb-6 border-b border-slate-100 w-full">
+                        <h4 class="text-lg font-bold text-slate-800">準備階段</h4>
+                        <ul class="mt-2 text-slate-600 space-y-2">
+                            <li>(1) 詳讀上方「認識 Teachable Machine」的介紹。</li>
+                            <li>(2) 負責同學借用 <strong>網路攝影機</strong> (單數號)。</li>
+                            <li>(3) 負責同學借用 <strong>圖卡</strong> (特定雙數號)。</li>
+                            <li>(4) 將網路攝影機接上電腦的 USB 插槽。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 5: Web Operation -->
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-4">
+                        <div class="step-number text-white font-bold rounded-full w-8 h-8 flex items-center justify-center shadow">2</div>
+                    </div>
+                    <div class="pb-6 border-b border-slate-100 w-full">
+                        <h4 class="text-lg font-bold text-slate-800">網頁操作階段</h4>
+                        <ul class="mt-3 text-slate-600 space-y-4">
+                            <li class="bg-orange-50 p-3 rounded-lg border border-orange-100">
+                                <span class="font-bold text-orange-700">(5-1)</span> 開啟 Teachable Machine 網站。
+                                <br><span class="text-sm text-red-500 font-bold ml-9">⚠️ 注意：開啟網站時，請務必點選「允許」使用網路攝影機！</span>
+                                <br><span class="ml-9">然後點選畫面上的 <strong>「Get Started」</strong> 按鈕。</span>
+                            </li>
+                            <li class="p-2">
+                                <span class="font-bold text-orange-700">(5-2)</span> 選擇 <strong>「圖片專案 (Image Project)」</strong> 後，點選 <strong>「標準圖像模型 (Standard image model)」</strong>。
+                            </li>
+                            <li class="p-2">
+                                <span class="font-bold text-orange-700">(5-3)</span> 編輯類別名稱：將預設的「Class 1」更改為 <strong>「可回收」</strong>。
+                            </li>
+                            <li class="bg-orange-50 p-3 rounded-lg border border-orange-100">
+                                <span class="font-bold text-orange-700">(5-4)</span> 點選 <strong>「Webcam」</strong> 按鈕，準備拍照！
+                                <br><span class="text-sm text-blue-600 font-bold ml-9">💡 技巧：使用網路攝影機拍攝各物品圖卡時，請讓每個物品「佔滿」網路攝影機的畫面，這樣電腦才看得清楚喔！</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 6-9: Cleanup -->
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-4">
+                        <div class="step-number text-white font-bold rounded-full w-8 h-8 flex items-center justify-center shadow">3</div>
+                    </div>
+                    <div class="w-full">
+                        <h4 class="text-lg font-bold text-slate-800">收拾與歸還</h4>
+                        <ul class="mt-2 text-slate-600 space-y-2">
+                            <li>(6) 收好圖卡。</li>
+                            <li>(7) 收好網路攝影機 <span class="text-red-500 font-semibold">(請將線整齊捲好)</span>。</li>
+                            <li>(8) 歸還網路攝影機：請依序放回櫃子上 <span class="text-sm text-slate-400">(如上方 webcam-03.png 所示，黃色標籤朝外)</span>。</li>
+                            <li>(9) 歸還圖卡：圖卡依序放入透明塑膠夾內，交回<strong>教師電腦旁的桌子上</strong>。</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-16 text-center text-slate-500 text-sm">
+        <p>國小六年級 Teachable Machine 課程專屬網頁</p>
+    </footer>
+
+</body>
+</html>
